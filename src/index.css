@@ -1,0 +1,328 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ===== F1 Racing Theme - Base Styles ===== */
+@layer base {
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    font-family: 'Inter', system-ui, sans-serif;
+    background-color: #0D0D0D;
+    color: #ffffff;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  /* Carbon fiber selection */
+  ::selection {
+    background-color: rgba(255, 24, 1, 0.4);
+    color: #ffffff;
+  }
+
+  /* Racing-themed scrollbar */
+  ::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: #0D0D0D;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: linear-gradient(180deg, #FF1801, #00D2FF);
+    border-radius: 3px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(180deg, #FF4444, #44E4FF);
+  }
+}
+
+/* ===== F1 Component Styles ===== */
+@layer components {
+  /* Carbon Fiber Glass Card */
+  .carbon-glass {
+    background: linear-gradient(135deg, rgba(13, 13, 13, 0.9), rgba(26, 26, 26, 0.8));
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 24, 1, 0.2);
+    position: relative;
+  }
+
+  .carbon-glass::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: repeating-linear-gradient(
+      45deg,
+      transparent,
+      transparent 2px,
+      rgba(255, 255, 255, 0.02) 2px,
+      rgba(255, 255, 255, 0.02) 4px
+    );
+    pointer-events: none;
+    border-radius: inherit;
+  }
+
+  /* Racing Button */
+  .btn-racing {
+    position: relative;
+    background: linear-gradient(135deg, #FF1801, #CC0000);
+    border: none;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    font-family: 'Orbitron', sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+  }
+
+  .btn-racing::before {
+    content: '';
+    position: absolute;
+    inset: -2px;
+    background: linear-gradient(135deg, #FF1801, #00D2FF);
+    border-radius: inherit;
+    z-index: -1;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    filter: blur(15px);
+  }
+
+  .btn-racing:hover::before {
+    opacity: 1;
+  }
+
+  .btn-racing:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 40px rgba(255, 24, 1, 0.4);
+  }
+
+  /* Racing Text Gradient */
+  .gradient-racing {
+    background: linear-gradient(135deg, #FF1801, #FF4444, #00D2FF);
+    background-size: 200% 200%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: gradientShift 4s ease infinite;
+  }
+
+  @keyframes gradientShift {
+    0%, 100% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+  }
+
+  /* HUD Panel */
+  .hud-panel {
+    background: rgba(0, 210, 255, 0.05);
+    border: 1px solid rgba(0, 210, 255, 0.3);
+    box-shadow: inset 0 0 30px rgba(0, 210, 255, 0.1);
+    position: relative;
+  }
+
+  .hud-panel::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, #00D2FF, transparent);
+  }
+
+  /* Section Container */
+  .section-container {
+    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+  }
+
+  /* Track Line Divider */
+  .track-divider {
+    height: 4px;
+    background: repeating-linear-gradient(
+      90deg,
+      #FF1801 0px,
+      #FF1801 20px,
+      #FFFFFF 20px,
+      #FFFFFF 40px
+    );
+  }
+
+  /* Pit Stop Card */
+  .pit-card {
+    background: linear-gradient(180deg, #1a1a2e 0%, #0D0D0D 100%);
+    border: 1px solid rgba(255, 24, 1, 0.3);
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  }
+
+  .pit-card:hover {
+    border-color: #FF1801;
+    transform: translateY(-8px) scale(1.02);
+    box-shadow: 0 20px 60px rgba(255, 24, 1, 0.2);
+  }
+
+  /* Speedometer Ring */
+  .speedometer-ring {
+    stroke-dasharray: 283;
+    stroke-dashoffset: 283;
+    transform: rotate(-90deg);
+    transform-origin: center;
+    transition: stroke-dashoffset 1.5s ease-out;
+  }
+
+  /* Telemetry Display */
+  .telemetry-value {
+    font-family: 'Orbitron', sans-serif;
+    font-variant-numeric: tabular-nums;
+    letter-spacing: 0.05em;
+  }
+}
+
+/* ===== F1 Utilities ===== */
+@layer utilities {
+  /* Neon Text Glow */
+  .text-glow-red {
+    text-shadow: 
+      0 0 10px rgba(255, 24, 1, 0.8),
+      0 0 20px rgba(255, 24, 1, 0.5),
+      0 0 40px rgba(255, 24, 1, 0.3);
+  }
+
+  .text-glow-blue {
+    text-shadow: 
+      0 0 10px rgba(0, 210, 255, 0.8),
+      0 0 20px rgba(0, 210, 255, 0.5),
+      0 0 40px rgba(0, 210, 255, 0.3);
+  }
+
+  /* Speed blur effect */
+  .motion-blur {
+    filter: blur(0);
+    transition: filter 0.3s ease;
+  }
+
+  .motion-blur.active {
+    filter: blur(2px);
+  }
+
+  /* Racing stripe accent */
+  .racing-stripe::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, #FF1801, #00D2FF);
+  }
+
+  /* Preserve 3D */
+  .preserve-3d {
+    transform-style: preserve-3d;
+  }
+
+  .perspective-1000 {
+    perspective: 1000px;
+  }
+
+  .backface-hidden {
+    backface-visibility: hidden;
+  }
+
+  /* Hide scrollbar */
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+}
+
+/* ===== Speed Lines Animation ===== */
+.speed-lines-container {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: 5;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.speed-lines-container.active {
+  opacity: 1;
+}
+
+.speed-line {
+  position: absolute;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, rgba(255, 24, 1, 0.6), transparent);
+  animation: speedLineMove 0.4s linear infinite;
+}
+
+@keyframes speedLineMove {
+  0% { transform: translateX(100vw); }
+  100% { transform: translateX(-100%); }
+}
+
+/* ===== Tire Loading Animation ===== */
+.tire-loader {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  border: 8px solid #1a1a1a;
+  border-top: 8px solid #FF1801;
+  border-right: 8px solid #00D2FF;
+  animation: tireSpin 0.6s linear infinite;
+}
+
+@keyframes tireSpin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* ===== Canvas Container ===== */
+.canvas-container {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+}
+
+.content-overlay {
+  position: relative;
+  z-index: 10;
+}
+
+/* ===== Checkered Flag Pattern ===== */
+.checkered-flag {
+  background-image: 
+    linear-gradient(45deg, #000 25%, transparent 25%),
+    linear-gradient(-45deg, #000 25%, transparent 25%),
+    linear-gradient(45deg, transparent 75%, #000 75%),
+    linear-gradient(-45deg, transparent 75%, #000 75%);
+  background-size: 20px 20px;
+  background-position: 0 0, 0 10px, 10px -10px, -10px 0px;
+}
+
+/* ===== Engine Vibration Effect ===== */
+.engine-vibrate {
+  animation: engineVibrate 0.05s linear infinite;
+}
+
+@keyframes engineVibrate {
+  0%, 100% { transform: translate(0, 0); }
+  25% { transform: translate(0.5px, 0.5px); }
+  50% { transform: translate(-0.5px, -0.5px); }
+  75% { transform: translate(0.5px, -0.5px); }
+}

@@ -3,10 +3,16 @@ import { useFrame, useThree } from '@react-three/fiber';
 import { Float } from '@react-three/drei';
 import * as THREE from 'three';
 
-// Simplified F1 Car geometry using primitives
+// Simplified F1 Car geometry using primitives - Ferrari Style
 const F1Car = ({ position = [0, 0, 0], rotation = [0, 0, 0], scale = 1 }) => {
     const carRef = useRef();
     const wheelsRef = useRef([]);
+
+    // Ferrari colors
+    const ferrariRed = "#DC0000";
+    const ferrariDarkRed = "#A80000";
+    const ferrariBlack = "#1a1a1a";
+    const ferrariYellow = "#FFF200";
 
     useFrame((state) => {
         // Wheel rotation
@@ -22,83 +28,83 @@ const F1Car = ({ position = [0, 0, 0], rotation = [0, 0, 0], scale = 1 }) => {
 
     return (
         <group ref={carRef} position={position} rotation={rotation} scale={scale}>
-            {/* Main body */}
+            {/* Main body - Ferrari Red */}
             <mesh position={[0, 0.15, 0]}>
                 <boxGeometry args={[0.4, 0.12, 1.2]} />
-                <meshStandardMaterial color="#1a1a1a" metalness={0.9} roughness={0.1} />
+                <meshStandardMaterial color={ferrariRed} metalness={0.9} roughness={0.1} />
             </mesh>
 
             {/* Cockpit */}
             <mesh position={[0, 0.22, 0.1]}>
                 <boxGeometry args={[0.25, 0.1, 0.3]} />
-                <meshStandardMaterial color="#0a0a0a" metalness={0.95} roughness={0.05} />
+                <meshStandardMaterial color={ferrariBlack} metalness={0.95} roughness={0.05} />
             </mesh>
 
-            {/* Nose cone */}
+            {/* Nose cone - Ferrari Red */}
             <mesh position={[0, 0.12, 0.7]} rotation={[Math.PI / 6, 0, 0]}>
                 <coneGeometry args={[0.08, 0.4, 4]} />
-                <meshStandardMaterial color="#1a1a1a" metalness={0.9} roughness={0.1} />
+                <meshStandardMaterial color={ferrariRed} metalness={0.9} roughness={0.1} />
             </mesh>
 
-            {/* Front wing */}
+            {/* Front wing - Black with red edge */}
             <mesh position={[0, 0.05, 0.85]}>
                 <boxGeometry args={[0.7, 0.02, 0.15]} />
-                <meshStandardMaterial color="#FF1801" metalness={0.8} roughness={0.2} />
+                <meshStandardMaterial color={ferrariBlack} metalness={0.8} roughness={0.2} />
             </mesh>
 
-            {/* Rear wing */}
+            {/* Rear wing - Black */}
             <group position={[0, 0.35, -0.5]}>
                 <mesh>
                     <boxGeometry args={[0.55, 0.15, 0.02]} />
-                    <meshStandardMaterial color="#FF1801" metalness={0.8} roughness={0.2} />
+                    <meshStandardMaterial color={ferrariBlack} metalness={0.8} roughness={0.2} />
                 </mesh>
                 {/* Wing supports */}
                 <mesh position={[0.2, -0.1, 0]}>
                     <boxGeometry args={[0.02, 0.2, 0.05]} />
-                    <meshStandardMaterial color="#1a1a1a" />
+                    <meshStandardMaterial color={ferrariRed} />
                 </mesh>
                 <mesh position={[-0.2, -0.1, 0]}>
                     <boxGeometry args={[0.02, 0.2, 0.05]} />
-                    <meshStandardMaterial color="#1a1a1a" />
+                    <meshStandardMaterial color={ferrariRed} />
                 </mesh>
             </group>
 
-            {/* Side pods */}
+            {/* Side pods - Ferrari Red */}
             <mesh position={[0.22, 0.12, -0.1]}>
                 <boxGeometry args={[0.12, 0.1, 0.5]} />
-                <meshStandardMaterial color="#1a1a1a" metalness={0.9} roughness={0.1} />
+                <meshStandardMaterial color={ferrariRed} metalness={0.9} roughness={0.1} />
             </mesh>
             <mesh position={[-0.22, 0.12, -0.1]}>
                 <boxGeometry args={[0.12, 0.1, 0.5]} />
-                <meshStandardMaterial color="#1a1a1a" metalness={0.9} roughness={0.1} />
+                <meshStandardMaterial color={ferrariRed} metalness={0.9} roughness={0.1} />
             </mesh>
 
             {/* Wheels */}
             {/* Front left */}
             <mesh ref={el => wheelsRef.current[0] = el} position={[0.28, 0.08, 0.45]} rotation={[0, 0, Math.PI / 2]}>
                 <cylinderGeometry args={[0.08, 0.08, 0.06, 16]} />
-                <meshStandardMaterial color="#1a1a1a" metalness={0.5} roughness={0.7} />
+                <meshStandardMaterial color={ferrariBlack} metalness={0.5} roughness={0.7} />
             </mesh>
             {/* Front right */}
             <mesh ref={el => wheelsRef.current[1] = el} position={[-0.28, 0.08, 0.45]} rotation={[0, 0, Math.PI / 2]}>
                 <cylinderGeometry args={[0.08, 0.08, 0.06, 16]} />
-                <meshStandardMaterial color="#1a1a1a" metalness={0.5} roughness={0.7} />
+                <meshStandardMaterial color={ferrariBlack} metalness={0.5} roughness={0.7} />
             </mesh>
             {/* Rear left */}
             <mesh ref={el => wheelsRef.current[2] = el} position={[0.3, 0.1, -0.35]} rotation={[0, 0, Math.PI / 2]}>
                 <cylinderGeometry args={[0.1, 0.1, 0.08, 16]} />
-                <meshStandardMaterial color="#1a1a1a" metalness={0.5} roughness={0.7} />
+                <meshStandardMaterial color={ferrariBlack} metalness={0.5} roughness={0.7} />
             </mesh>
             {/* Rear right */}
             <mesh ref={el => wheelsRef.current[3] = el} position={[-0.3, 0.1, -0.35]} rotation={[0, 0, Math.PI / 2]}>
                 <cylinderGeometry args={[0.1, 0.1, 0.08, 16]} />
-                <meshStandardMaterial color="#1a1a1a" metalness={0.5} roughness={0.7} />
+                <meshStandardMaterial color={ferrariBlack} metalness={0.5} roughness={0.7} />
             </mesh>
 
-            {/* Racing number */}
+            {/* Ferrari Shield/Logo area - Yellow accent */}
             <mesh position={[0, 0.22, -0.15]} rotation={[-Math.PI / 2, 0, 0]}>
                 <planeGeometry args={[0.15, 0.1]} />
-                <meshBasicMaterial color="#00D2FF" />
+                <meshBasicMaterial color={ferrariYellow} />
             </mesh>
 
             {/* Exhaust glow */}

@@ -26,11 +26,13 @@ const GarageCard = ({ project, index, onClick }) => {
     return (
         <motion.div
             ref={cardRef}
+            initial={{ opacity: 1, y: 0 }}
             className={`garage-car pit-card rounded-2xl overflow-hidden cursor-pointer group relative ${project.featured ? 'md:col-span-2' : ''
                 }`}
             style={{
                 transform: `perspective(1000px) rotateX(${tilt.x}deg) rotateY(${tilt.y}deg)`,
-                transformStyle: 'preserve-3d'
+                transformStyle: 'preserve-3d',
+                opacity: 1
             }}
             onMouseMove={handleMouseMove}
             onMouseLeave={handleMouseLeave}
@@ -55,13 +57,14 @@ const GarageCard = ({ project, index, onClick }) => {
                     </div>
                 )}
 
-                {/* Abstract car silhouette */}
-                <div className="absolute inset-0 flex items-center justify-center opacity-10">
-                    <svg className="w-48 h-32" viewBox="0 0 200 80" fill="none">
-                        <path d="M10 60 L30 40 L80 35 L120 30 L160 35 L190 50 L190 60 L10 60 Z" fill="currentColor" />
-                        <circle cx="45" cy="60" r="15" fill="currentColor" />
-                        <circle cx="155" cy="60" r="15" fill="currentColor" />
-                    </svg>
+                {/* F1 Car Image */}
+                <div className="absolute inset-0 flex items-center justify-center">
+                    <img 
+                        src={project.carImage} 
+                        alt={`${project.team} F1 Car`}
+                        className="w-full h-auto object-contain opacity-90 group-hover:scale-105 transition-transform duration-500"
+                        style={{ maxHeight: '140px' }}
+                    />
                 </div>
 
                 {/* Team color stripe */}
@@ -219,13 +222,10 @@ const Projects = () => {
         const ctx = gsap.context(() => {
             gsap.from('.projects-header', {
                 y: 60, opacity: 0, duration: 1,
-                scrollTrigger: { trigger: '.projects-header', start: 'top 85%', toggleActions: 'play none none reverse' }
+                scrollTrigger: { trigger: '.projects-header', start: 'top 85%', toggleActions: 'play none none none' }
             });
 
-            gsap.from('.garage-car', {
-                y: 80, opacity: 0, duration: 0.8, stagger: 0.15,
-                scrollTrigger: { trigger: '.garage-grid', start: 'top 80%', toggleActions: 'play none none reverse' }
-            });
+            // Removed garage-car animation to prevent visibility issues
         }, section);
 
         return () => ctx.revert();
@@ -253,12 +253,19 @@ const Projects = () => {
                 {/* Projects Grid */}
                 <div className="garage-grid grid md:grid-cols-2 gap-6">
                     {projects.map((project, index) => (
-                        <GarageCard
+                        <motion.div
                             key={project.id}
-                            project={project}
-                            index={index}
-                            onClick={() => setSelectedProject(project)}
-                        />
+                            initial={{ opacity: 0, y: 30 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ once: true }}
+                            transition={{ delay: index * 0.1, duration: 0.5 }}
+                        >
+                            <GarageCard
+                                project={project}
+                                index={index}
+                                onClick={() => setSelectedProject(project)}
+                            />
+                        </motion.div>
                     ))}
                 </div>
 
@@ -271,7 +278,7 @@ const Projects = () => {
                     viewport={{ once: true }}
                 >
                     <motion.a
-                        href="https://github.com/bhavya"
+                        href="https://github.com/BhavyaKalariya3012"
                         target="_blank"
                         rel="noopener noreferrer"
                         className="inline-flex items-center gap-2 px-6 py-3 rounded-lg carbon-glass text-gray-300 hover:text-white font-medium border border-transparent hover:border-racing-blue/30 transition-all"

@@ -5,7 +5,7 @@ export const personalInfo = {
     tagline: "Speed. Precision. Performance.",
     description: "A passionate web developer who builds blazing-fast, pixel-perfect digital experiences. Like an F1 engineer, I obsess over every millisecond of performance and every detail of the user interface.",
     email: "bhavya@example.com",
-    github: "https://github.com/bhavya",
+    github: "https://github.com/BhavyaKalariya3012",
     linkedin: "https://linkedin.com/in/bhavya",
     location: "India",
     raceNumber: "01" // Driver number for F1 theme
@@ -85,47 +85,42 @@ export const skills = [
 export const projects = [
     {
         id: 1,
-        title: "E-Commerce Platform",
-        description: "A full-featured online shopping platform with cart functionality, user authentication, and payment integration.",
-        tech: ["React", "Node.js", "MongoDB", "Stripe"],
-        github: "https://github.com/bhavya/ecommerce",
-        live: "https://ecommerce-demo.vercel.app",
+        title: "QueryWhisperer",
+        description: "Natural language to SQL chatbot powered by Vanna AI, Ollama (local LLM), and Chainlit. Ask questions about your data in plain English and get SQL queries automatically.",
+        tech: ["Python", "Vanna AI", "Ollama", "Chainlit", "SQLite"],
+        github: "https://github.com/BhavyaKalariya3012/QueryWhisperer",
+        live: "",
         featured: true,
         carNumber: "01",
-        teamColor: "#FF1801"
+        teamColor: "#00D2BE",
+        team: "Mercedes",
+        carImage: "https://media.formula1.com/d_team_car_fallback_image.png/content/dam/fom-website/teams/2024/mercedes.png"
     },
     {
         id: 2,
-        title: "Task Management App",
-        description: "A beautiful task manager with drag-and-drop functionality, categories, and real-time sync.",
-        tech: ["React", "Firebase", "Tailwind CSS"],
-        github: "https://github.com/bhavya/taskapp",
-        live: "https://taskapp-demo.vercel.app",
+        title: "Student Engagement Analyzer",
+        description: "AI-powered web app that analyzes student engagement in recorded Zoom lectures using emotion recognition. Detects faces, classifies emotions, and generates interactive engagement reports.",
+        tech: ["Python", "TensorFlow", "OpenCV", "Streamlit", "MobileNetV2"],
+        github: "https://github.com/BhavyaKalariya3012/student-attention-analyze",
+        live: "",
         featured: true,
         carNumber: "02",
-        teamColor: "#00D2FF"
+        teamColor: "#FF8000",
+        team: "McLaren",
+        carImage: "https://media.formula1.com/d_team_car_fallback_image.png/content/dam/fom-website/teams/2024/mclaren.png"
     },
     {
         id: 3,
-        title: "Weather Dashboard",
-        description: "Real-time weather tracking app with beautiful visualizations and 7-day forecasts.",
-        tech: ["JavaScript", "OpenWeather API", "Chart.js"],
-        github: "https://github.com/bhavya/weather",
-        live: "https://weather-demo.vercel.app",
-        featured: false,
-        carNumber: "03",
-        teamColor: "#FFD700"
-    },
-    {
-        id: 4,
         title: "3D Portfolio",
         description: "This F1-inspired interactive 3D portfolio showcasing speed and precision.",
         tech: ["React", "Three.js", "GSAP", "Tailwind"],
-        github: "https://github.com/bhavya/portfolio",
+        github: "https://github.com/BhavyaKalariya3012",
         live: "#",
         featured: true,
-        carNumber: "04",
-        teamColor: "#FF1801"
+        carNumber: "03",
+        teamColor: "#3671C6",
+        team: "Red Bull",
+        carImage: "https://media.formula1.com/d_team_car_fallback_image.png/content/dam/fom-website/teams/2024/red-bull-racing.png"
     }
 ];
 

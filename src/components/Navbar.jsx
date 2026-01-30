@@ -22,13 +22,12 @@ const Navbar = ({ currentSection = 0 }) => {
 
     return (
         <>
-            {/* Desktop Navigation */}
+            {/* Desktop Navigation - Top Center */}
             <motion.nav
                 initial={{ y: -100 }}
                 animate={{ y: 0 }}
                 transition={{ delay: 0.3, duration: 0.8 }}
-                className={`fixed top-20 left-1/2 -translate-x-1/2 z-40 transition-all duration-500 hidden md:block ${isScrolled ? 'top-4' : 'top-20'
-                    }`}
+                className="fixed top-4 left-1/2 -translate-x-1/2 z-40 hidden md:block"
             >
                 <div className="carbon-glass rounded-full px-2 py-2 flex items-center gap-1">
                     {navLinks.map((link, index) => (
@@ -88,12 +87,12 @@ const Navbar = ({ currentSection = 0 }) => {
                 </motion.button>
             </div>
 
-            {/* Driver Number Badge - Fixed Left */}
+            {/* Driver Number Badge - Fixed Bottom Left */}
             <motion.div
                 initial={{ x: -100, opacity: 0 }}
                 animate={{ x: 0, opacity: 1 }}
                 transition={{ delay: 0.8, duration: 0.8 }}
-                className="fixed top-4 left-4 z-40 hidden md:block"
+                className="fixed bottom-6 left-6 z-40 hidden md:block"
             >
                 <div className="carbon-glass rounded-xl p-3 flex items-center gap-3">
                     <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-f1-red to-racing-blue flex items-center justify-center">

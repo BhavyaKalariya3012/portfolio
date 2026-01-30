@@ -10,6 +10,10 @@ const Contact = () => {
     const sectionRef = useRef(null);
     const [formData, setFormData] = useState({ name: '', email: '', message: '' });
     const [isSubmitting, setIsSubmitting] = useState(false);
+    const [submitStatus, setSubmitStatus] = useState({ type: '', message: '' });
+
+    // Get your free access key from https://web3forms.com
+    const WEB3FORMS_ACCESS_KEY = 'YOUR_ACCESS_KEY_HERE'; // Replace with your key
 
     useEffect(() => {
         const section = sectionRef.current;
@@ -29,14 +33,48 @@ const Contact = () => {
         return () => ctx.revert();
     }, []);
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
         setIsSubmitting(true);
-        setTimeout(() => {
+        setSubmitStatus({ type: '', message: '' });
+
+        try {
+            const response = await fetch('https://api.web3forms.com/submit', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json'
+                },
+                body: JSON.stringify({
+                    access_key: WEB3FORMS_ACCESS_KEY,
+                    name: formData.name,
+                    email: formData.email,
+                    message: formData.message,
+                    subject: `New message from ${formData.name} - Portfolio Contact`,
+                })
+            });
+
+            const result = await response.json();
+
+            if (result.success) {
+                setSubmitStatus({ 
+                    type: 'success', 
+                    message: '🏁 Message sent successfully! I\'ll get back to you soon.' 
+                });
+                setFormData({ name: '', email: '', message: '' });
+            } else {
+                throw new Error(result.message || 'Something went wrong');
+            }
+        } catch (error) {
+            setSubmitStatus({ 
+                type: 'error', 
+                message: '❌ Failed to send message. Please try again or email directly.' 
+            });
+        } finally {
             setIsSubmitting(false);
-            setFormData({ name: '', email: '', message: '' });
-            alert('Message sent! (Demo)');
-        }, 1500);
+            // Clear status after 5 seconds
+            setTimeout(() => setSubmitStatus({ type: '', message: '' }), 5000);
+        }
     };
 
     const socialLinks = [
@@ -215,6 +253,21 @@ const Contact = () => {
                                     </>
                                 )}
                             </motion.button>
+
+                            {/* Status Message */}
+                            {submitStatus.message && (
+                                <motion.div
+                                    initial={{ opacity: 0, y: 10 }}
+                                    animate={{ opacity: 1, y: 0 }}
+                                    className={`p-4 rounded-xl text-sm font-medium text-center ${
+                                        submitStatus.type === 'success' 
+                                            ? 'bg-green-500/20 text-green-400 border border-green-500/30' 
+                                            : 'bg-red-500/20 text-red-400 border border-red-500/30'
+                                    }`}
+                                >
+                                    {submitStatus.message}
+                                </motion.div>
+                            )}
                         </div>
                     </form>
                 </div>

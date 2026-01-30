@@ -13,7 +13,8 @@ const Contact = () => {
     const [submitStatus, setSubmitStatus] = useState({ type: '', message: '' });
 
     // Get your free access key from https://web3forms.com
-    const WEB3FORMS_ACCESS_KEY = 'YOUR_ACCESS_KEY_HERE'; // Replace with your key
+    // Sign up at web3forms.com and get your access key
+    const WEB3FORMS_ACCESS_KEY = '3750e36c-4ed9-456c-95cf-488fc46f79fb'; // Replace with your actual key from web3forms.com
 
     useEffect(() => {
         const section = sectionRef.current;
@@ -55,6 +56,7 @@ const Contact = () => {
             });
 
             const result = await response.json();
+            console.log('Web3Forms response:', result);
 
             if (result.success) {
                 setSubmitStatus({ 
@@ -66,9 +68,10 @@ const Contact = () => {
                 throw new Error(result.message || 'Something went wrong');
             }
         } catch (error) {
+            console.error('Form submission error:', error);
             setSubmitStatus({ 
                 type: 'error', 
-                message: '❌ Failed to send message. Please try again or email directly.' 
+                message: `❌ ${error.message || 'Failed to send message. Please try again or email directly.'}` 
             });
         } finally {
             setIsSubmitting(false);

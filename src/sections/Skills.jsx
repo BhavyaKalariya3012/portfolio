@@ -13,12 +13,12 @@ const Speedometer = ({ skill, index }) => {
 
     return (
         <motion.div
-            className="skill-gauge pit-card rounded-xl p-6 text-center group"
+            className="skill-gauge pit-card rounded-xl p-4 text-center group"
             whileHover={{ scale: 1.02, y: -5 }}
             transition={{ type: 'spring', stiffness: 300 }}
         >
             {/* Speedometer SVG */}
-            <div className="relative w-28 h-28 mx-auto mb-4">
+            <div className="relative w-24 h-24 mx-auto mb-2">
                 <svg className="w-full h-full -rotate-90" viewBox="0 0 100 100">
                     {/* Background ring */}
                     <circle
@@ -55,13 +55,13 @@ const Speedometer = ({ skill, index }) => {
 
                 {/* Center value */}
                 <div className="absolute inset-0 flex flex-col items-center justify-center">
-                    <span className="font-racing text-2xl font-bold text-white">{skill.level}</span>
+                    <span className="font-racing text-xl font-bold text-white">{skill.level}</span>
                     <span className="text-[10px] text-gray-500 uppercase">%</span>
                 </div>
             </div>
 
             {/* Skill name */}
-            <h3 className="font-racing text-lg font-semibold text-white mb-1 group-hover:text-glow-red transition-all">
+            <h3 className="font-racing text-base font-semibold text-white group-hover:text-glow-red transition-all">
                 {skill.name}
             </h3>
 
@@ -69,11 +69,6 @@ const Speedometer = ({ skill, index }) => {
             <div className="text-xs text-racing-blue font-mono">
                 {skill.topSpeed}
             </div>
-
-            {/* Category badge */}
-            <span className="inline-block mt-3 px-2 py-1 rounded bg-white/5 text-xs text-gray-400 capitalize">
-                {skill.category}
-            </span>
         </motion.div>
     );
 };
@@ -155,8 +150,8 @@ const Skills = () => {
                 {/* Skills Grid - Speedometers */}
                 <div className="skills-grid">
                     {/* Frontend */}
-                    <div className="mb-12">
-                        <h3 className="font-racing text-lg font-semibold text-white mb-6 flex items-center gap-3">
+                    <div className="mb-8">
+                        <h3 className="font-racing text-lg font-semibold text-white mb-4 flex items-center gap-3">
                             <span className="w-8 h-8 rounded bg-gradient-to-br from-f1-red to-racing-blue flex items-center justify-center text-sm">
                                 🎨
                             </span>
@@ -170,8 +165,8 @@ const Skills = () => {
                     </div>
 
                     {/* Programming */}
-                    <div className="mb-12">
-                        <h3 className="font-racing text-lg font-semibold text-white mb-6 flex items-center gap-3">
+                    <div className="mb-8">
+                        <h3 className="font-racing text-lg font-semibold text-white mb-4 flex items-center gap-3">
                             <span className="w-8 h-8 rounded bg-gradient-to-br from-racing-blue to-racing-gold flex items-center justify-center text-sm">
                                 💻
                             </span>
@@ -186,7 +181,7 @@ const Skills = () => {
 
                     {/* Tools */}
                     <div>
-                        <h3 className="font-racing text-lg font-semibold text-white mb-6 flex items-center gap-3">
+                        <h3 className="font-racing text-lg font-semibold text-white mb-4 flex items-center gap-3">
                             <span className="w-8 h-8 rounded bg-gradient-to-br from-racing-gold to-f1-red flex items-center justify-center text-sm">
                                 🛠️
                             </span>
